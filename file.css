@@ -1,0 +1,143 @@
+/* body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  } */
+body {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: antiquewhite;
+}
+.container {
+  min-width: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  border: 0.1cm solid;
+  font-size: small;
+  justify-content: center;
+  justify-content: space-between;
+  max-height: 100%;
+  padding: 10px;
+}
+
+.header h1 {
+  margin: 0;
+}
+.frame {
+  margin: 25px;
+
+  display: flex;
+}
+
+/* Set the font size of the header elements to be smaller on smaller screens */
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: x-small;
+  }
+}
+
+/* Stack the header elements vertically on screens smaller than 400px */
+@media (max-width: 400px) {
+  .header {
+    flex-direction: column;
+  }
+}
+
+/* Make the frame element take up the full width of the screen on screens smaller than 600px */
+@media (max-width: 600px) {
+  .frame {
+    min-width: 100%;
+  }
+}
+
+.card-container {
+  /* border: 0.1cm solid black; */
+  justify-content: space-between;
+  margin: 25px;
+  margin-top: 10px;
+  perspective: 6000px;
+  display: flex;
+}
+.card {
+  width: 300px;
+  height: 400px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 0.8s ease-in-out;
+}
+
+.card-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+.card-front {
+  background-color: #ffffff;
+  z-index: 2;
+}
+.card-back {
+  background-color: black;
+  transform: rotateY(-180deg);
+}
+
+img {
+  height: 80%;
+}
+.card:hover {
+  transform: rotateY(180deg);
+}
+.card-face:active img {
+  /* Adjust the scale factor as needed */
+
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  /* animation-name: full-size;
+  animation-duration: 5s;
+  animation-iteration-count: 5;
+  animation-delay: 2s; */
+}
+
+@keyframes full-size {
+  from {
+    opacity: 0;
+  } /* Gradually fade in */
+  to {
+    opacity: 1;
+  } /* Full opacity for full visibility */
+}
+
+.card:not(:hover) img {
+  /* Hide enlarged image on mouseout */
+  animation: shrink 0.3s ease-in-out forwards; /* Animation for smoother disappearance */
+}
+
+@keyframes shrink {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  } /* Gradually fade out */
+}
